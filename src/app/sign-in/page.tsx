@@ -1,11 +1,9 @@
-"use client"
+"use client";
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,6 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 function Copyright(props: any) {
   return (
@@ -27,17 +27,43 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = React.useState<string | null>(null);
+  const router = useRouter();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+
+    try {
+      const apiUrl = 'https://otn6zi7itj.execute-api.us-east-2.amazonaws.com/Stage1/sign-in';
+      const response = await axios.post(apiUrl, {
+        body: JSON.stringify({ email, password }),
+      });
+
+      const responseData = JSON.parse(response.data.body);
+      console.log(responseData);
+
+      const { accessToken, refreshToken, idToken, userType } = responseData;
+      console.log(accessToken);
+
+      // Store tokens and userType in localStorage
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('idToken', idToken);
+      localStorage.setItem('userType', userType);
+
+      console.log('Sign-in successful!');
+      router.push('/'); // Redirect to home page or dashboard
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+      setError('Failed to sign in');
+    }
   };
 
   return (
@@ -79,6 +105,11 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+            {error && (
+              <Typography color="error" variant="body2">
+                {error}
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth

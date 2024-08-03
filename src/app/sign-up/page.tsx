@@ -89,11 +89,13 @@ export default function SignUp() {
     try {
       const response = await axios.post(apiUrl, { body: JSON.stringify(userDetails) });
       const responseData = JSON.parse(response.data.body);
-      const { accessToken, refreshToken, idToken } = responseData;
+      console.log(responseData);
+      const { accessToken, refreshToken, idToken, userType } = responseData;
       console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('idToken', idToken);
+      localStorage.setItem('userType',userType)
       console.log('Sign-up successful!');
       router.push("http://localhost:3000/")
     } catch (error) {

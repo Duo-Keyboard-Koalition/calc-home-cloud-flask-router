@@ -21,9 +21,11 @@ const logoStyle = {
 interface AppAppBarProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
+  isLoggedIn: boolean;
+  onLogout: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
+function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -92,7 +94,6 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                     Home
                   </Typography>
                 </MenuItem>
-                
               </Box>
             </Box>
             <Box
@@ -103,24 +104,37 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
               }}
             >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              <Button
-                color="primary"
-                variant="text"
-                size="small"
-                component="a"
-                href="http://localhost:3000/sign-in" // Updated href
-              >
-                Sign in
-              </Button>
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                component="a"
-                href="http://localhost:3000/sign-up" // Updated href
-              >
-                Sign up
-              </Button>
+              {isLoggedIn ? (
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="small"
+                  onClick={onLogout}
+                >
+                 Sign Out
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small"
+                    component="a"
+                    href="http://localhost:3000/sign-in"
+                  >
+                    Sign in
+                  </Button>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    component="a"
+                    href="http://localhost:3000/sign-up"
+                  >
+                    Sign up
+                  </Button>
+                </>
+              )}
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
@@ -155,28 +169,43 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                     Home
                   </MenuItem>
                   <Divider />
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      component="a"
-                      href="http://localhost:3000/sign-up" // Updated href
-                      sx={{ width: '100%' }}
-                    >
-                      Sign up
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      component="a"
-                      href="http://localhost:3000/sign-in" // Updated href
-                      sx={{ width: '100%' }}
-                    >
-                      Sign in
-                    </Button>
-                  </MenuItem>
+                  {isLoggedIn ? (
+                    <MenuItem>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        sx={{ width: '100%' }}
+                        onClick={onLogout}
+                      >
+                        Sign Out
+                      </Button>
+                    </MenuItem>
+                  ) : (
+                    <>
+                      <MenuItem>
+                        <Button
+                          color="primary"
+                          variant="contained"
+                          component="a"
+                          href="http://localhost:3000/sign-up"
+                          sx={{ width: '100%' }}
+                        >
+                          Sign up
+                        </Button>
+                      </MenuItem>
+                      <MenuItem>
+                        <Button
+                          color="primary"
+                          variant="outlined"
+                          component="a"
+                          href="http://localhost:3000/sign-in"
+                          sx={{ width: '100%' }}
+                        >
+                          Sign in
+                        </Button>
+                      </MenuItem>
+                    </>
+                  )}
                 </Box>
               </Drawer>
             </Box>

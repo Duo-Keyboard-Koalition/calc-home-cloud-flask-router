@@ -1,5 +1,5 @@
 "use client"
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PaletteMode } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -17,6 +17,7 @@ export default function LandingPage() {
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -26,10 +27,30 @@ export default function LandingPage() {
     setShowCustomTheme((prev) => !prev);
   };
 
+  useEffect(() => {
+    // Check if tokens exist to determine if the user is logged in
+    const accessToken = localStorage.getItem('accessToken');
+    setIsLoggedIn(!!accessToken);
+  }, []);
+
+  const handleLogout = () => {
+    // Clear tokens and user info from localStorage
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('idToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userType');
+    setIsLoggedIn(false);
+  };
+
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
-      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+      <AppAppBar
+        mode="light" // or your state for theme mode
+        toggleColorMode={toggleColorMode}
+        isLoggedIn={isLoggedIn}
+        onLogout={handleLogout}
+      />
       <Box sx={{ bgcolor: 'background.default' }}>
         <Highlights />
         <Divider />
