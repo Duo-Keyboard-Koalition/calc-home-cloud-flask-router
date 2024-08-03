@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
+import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
@@ -16,41 +16,42 @@ import { useTheme } from '@mui/material/styles';
 const items = [
   {
     icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
+    title: 'Adaptable Performance',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      'Our service effortlessly adjusts to your needs, boosting efficiency and simplifying the disposal process.',
   },
   {
     icon: <ConstructionRoundedIcon />,
-    title: 'Built to last',
+    title: 'Built to Last',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+      'Experience unmatched reliability with our durable solution, ensuring a long-term commitment to sustainability.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
-    title: 'Great user experience',
+    title: 'Great User Experience',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+      'Enjoy an intuitive and easy-to-use interface that integrates seamlessly into your routine.',
   },
   {
     icon: <AutoFixHighRoundedIcon />,
-    title: 'Innovative functionality',
+    title: 'Innovative Functionality',
     description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Stay ahead with features that set new standards in waste management, addressing your evolving needs better than the rest.',
   },
   {
     icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
+    title: 'Reliable Support',
     description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+      'Count on our responsive customer support, offering assistance that goes beyond initial setup.',
   },
   {
-    icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
+    icon: <ChatBubbleRoundedIcon />,
+    title: 'Smart Chatbot Assistance',
     description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+      'Get instant answers to all your questions about our service with our intelligent and responsive chatbot.',
   },
 ];
+
 
 export default function Highlights() {
   const theme = useTheme();
@@ -85,9 +86,7 @@ export default function Highlights() {
             EcoFind
           </Typography>
           <Typography variant="body1" sx={{ color: isDarkMode ? 'grey.400' : 'grey.600' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+          A service that helps users locate the nearest disposal sites for 3D printing waste. It simplifies the process of finding eco-friendly disposal options, making sustainable practices more accessible.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>
