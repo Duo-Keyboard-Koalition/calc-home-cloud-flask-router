@@ -36,6 +36,14 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
     window.open('http://localhost:3000', '_self');
   };
 
+  const handleFindClick = () => {
+    window.open('http://localhost:3000/map', '_self');
+  };
+
+  const handleBotClick = () => {
+    window.open('http://localhost:3000/chatbot', '_self');
+  };
+
   return (
     <div>
       <AppBar
@@ -92,6 +100,28 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
                 >
                   <Typography variant="body2" color="text.primary">
                     Home
+                  </Typography>
+                </MenuItem>
+              </Box>
+
+              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <MenuItem
+                  onClick={handleFindClick}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="text.primary">
+                    Find
+                  </Typography>
+                </MenuItem>
+              </Box>
+
+              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <MenuItem
+                  onClick={handleBotClick}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="text.primary">
+                    Chatbot
                   </Typography>
                 </MenuItem>
               </Box>
