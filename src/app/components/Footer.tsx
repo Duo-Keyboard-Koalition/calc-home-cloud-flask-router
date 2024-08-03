@@ -75,6 +75,14 @@ export default function Footer() {
             </Link>
             <Typography variant="body2" color={color}>Devansh Nagpal</Typography>
           </Box>
+          <Box sx={{ textAlign: 'center' }}>
+            <Link href="https://www.linkedin.com/in/amr-radwan1/" target="_blank" color={color}>
+              <IconButton color="inherit" aria-label="LinkedIn">
+                <LinkedInIcon />
+              </IconButton>
+            </Link>
+            <Typography variant="body2" color={color}>Amr Radwan</Typography>
+          </Box>
         </Stack>
       </Box>
       <Box
