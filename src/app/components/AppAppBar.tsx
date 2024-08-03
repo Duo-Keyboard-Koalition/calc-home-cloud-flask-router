@@ -103,28 +103,31 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
                   </Typography>
                 </MenuItem>
               </Box>
+              {isLoggedIn ? (
+                <>
+                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <MenuItem
+                      onClick={handleFindClick}
+                      sx={{ py: '6px', px: '12px' }}
+                    >
+                      <Typography variant="body2" color="text.primary">
+                        Find
+                      </Typography>
+                    </MenuItem>
+                  </Box>
 
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  onClick={handleFindClick}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Find
-                  </Typography>
-                </MenuItem>
-              </Box>
-
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  onClick={handleBotClick}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Chatbot
-                  </Typography>
-                </MenuItem>
-              </Box>
+                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <MenuItem
+                      onClick={handleBotClick}
+                      sx={{ py: '6px', px: '12px' }}
+                    >
+                      <Typography variant="body2" color="text.primary">
+                        Chatbot
+                      </Typography>
+                    </MenuItem>
+                  </Box>
+                </>
+              ) : null}
             </Box>
             <Box
               sx={{
