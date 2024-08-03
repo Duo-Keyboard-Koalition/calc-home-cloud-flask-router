@@ -32,7 +32,7 @@ export default function Footer() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: { xs: 4, sm: 8 },
-        py: { xs: 8, sm: 10 },
+        py: { xs: 4, sm: 6 }, // Reduced padding
         textAlign: { sm: 'center', md: 'left' },
         color: color,
       }}
@@ -89,7 +89,7 @@ export default function Footer() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          pt: { xs: 4, sm: 8 },
+          pt: { xs: 2, sm: 4 }, // Reduced padding-top
           width: '100%',
           borderTop: '1px solid',
           borderColor: 'divider',

@@ -57,9 +57,7 @@ export default function LandingPage() {
         <Divider />
         <FAQ />
         <Divider />
-        <Footer />
-        <Map/>
-        
+        <Footer />        
       </Box>
     </ThemeProvider>
   );
