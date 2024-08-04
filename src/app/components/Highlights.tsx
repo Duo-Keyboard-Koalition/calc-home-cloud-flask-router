@@ -82,8 +82,9 @@ export default function Highlights() {
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h1" color={isDarkMode ? 'white' : 'black'}>
-            EcoFind
+           <Typography component="h2" variant="h1" color={isDarkMode ? 'white' : 'black'}>
+            <span style={{ color: 'green' }}>Eco</span>
+            <span style={{ color: isDarkMode ? 'white' : 'black' }}>Find</span>
           </Typography>
           <Typography variant="body1" sx={{ color: isDarkMode ? 'grey.400' : 'grey.600' }}>
           A service that helps users locate the nearest disposal sites for 3D printing waste. It simplifies the process of finding eco-friendly disposal options, making sustainable practices more accessible.

@@ -8,7 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppAppBar from '../components/AppAppBar';
 import Footer from '../components/Footer';
 import getLPTheme from '../getLPTheme';
-import {Map} from '../components/map';
+import Map from '../components/map';
 
 export default function LandingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -38,6 +38,7 @@ export default function LandingPage() {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userType');
     setIsLoggedIn(false);
+    window.open('http://localhost:3000', '_self');
   };
 
   return (

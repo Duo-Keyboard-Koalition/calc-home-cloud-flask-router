@@ -10,8 +10,6 @@ import FAQ from './components/FAQ';
 import Highlights from './components/Highlights';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme';
-import Link from 'next/link';
-import {Map} from './components/map';
 
 export default function LandingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
