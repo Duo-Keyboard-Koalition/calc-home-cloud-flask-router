@@ -27,8 +27,6 @@ interface AppAppBarProps {
 
 function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
-      const idToken = localStorage.getItem('idToken');
-
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
