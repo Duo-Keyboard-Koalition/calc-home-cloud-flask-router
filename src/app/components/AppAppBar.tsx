@@ -27,6 +27,7 @@ interface AppAppBarProps {
 
 function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
+      const idToken = localStorage.getItem('idToken');
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -41,8 +42,17 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
   };
 
   const handleBotClick = () => {
-    window.open('http://localhost:3000/chatbot', '_self');
+    const idToken = localStorage.getItem('idToken'); // Read the idToken from localStorage
+  
+    if (idToken) {
+      // Navigate to the new URL with the idToken as a query parameter
+      window.open(`http://localhost:3001/scrimba-langchain?idToken=${encodeURIComponent(idToken)}`, '_self');
+    } else {
+      // Handle case where idToken is not present
+      window.open('http://localhost:3001/scrimba-langchain', '_self');
+    }
   };
+  
 
   return (
     <div>
