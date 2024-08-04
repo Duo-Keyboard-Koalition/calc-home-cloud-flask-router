@@ -13,7 +13,7 @@ try {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
-  const filePath = path.join(__dirname, 'scrimba-info.txt');
+  const filePath = path.join(__dirname, 'script.txt');
   const text = fs.readFileSync(filePath, 'utf8');
 
   const splitter = new RecursiveCharacterTextSplitter({
