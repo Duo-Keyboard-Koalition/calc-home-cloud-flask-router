@@ -17,7 +17,7 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Clone the Repository:**
    ```bash
-   https://github.com/codejedi-ai/ecofind-frontend
+   https://github.com/codejedi-ai/ecofind-frontend.git
    cd ecofind-frontend
 2. **Install Dependencies:**
      npm install or yarn install
