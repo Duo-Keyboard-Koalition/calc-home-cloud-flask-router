@@ -2,11 +2,16 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      docker: 26
     commands:
       - echo Setting up environment variables...
       - REPO_NAME=471112830639.dkr.ecr.us-east-1.amazonaws.com/ecolab-frontend
+      - echo Installing Docker...
+      - apt-get update
+      - apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+      - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      - apt-get update
+      - apt-get install -y docker-ce
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPO_NAME
   build:
