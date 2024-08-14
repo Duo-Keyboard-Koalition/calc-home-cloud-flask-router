@@ -4,7 +4,6 @@ phases:
   install:
     commands:
       - echo Setting up environment variables...
-      - aws ecr-public get-login-password --region us-east-1
       - REPO_NAME=public.ecr.aws/q5l4e6k4
       - echo Installing Docker...
       - apt-get update
@@ -16,15 +15,14 @@ phases:
       - which aws
       - aws --version
       - echo Logging in to Amazon ECR...
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q5l4e6k4
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPO_NAME
   build:
     commands:
       - echo Build the Docker image...
-      - docker build -t ecolab-frontend .
+      - docker build -t filamentrevive-frontend .
       - echo Tag the Docker image...
-      - docker tag ecolab-frontend:latest $REPO_NAME:latest
+      - docker tag filamentrevive-frontend:latest $REPO_NAME/filamentrevive-frontend:latest
   post_build:
     commands:
       - echo Push the Docker image to ECR...
-      - docker push $REPO_NAME:latest
-      - docker push 471112830639.dkr.ecr.us-east-1.amazonaws.com/ecolab-frontend:latest
+      - docker push $REPO_NAME/filamentrevive-frontend:latest
