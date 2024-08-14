@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Setting up environment variables...
-      - REPO_NAME=471112830639.dkr.ecr.us-east-1.amazonaws.com/ecolab-frontend
+      - REPO_NAME=public.ecr.aws/q5l4e6k4
       - echo Installing Docker...
       - apt-get update
       - apt-get install -y apt-transport-https ca-certificates curl software-properties-common
@@ -26,3 +26,4 @@ phases:
     commands:
       - echo Push the Docker image to ECR...
       - docker push $REPO_NAME:latest
+      - docker push 471112830639.dkr.ecr.us-east-1.amazonaws.com/ecolab-frontend:latest
