@@ -1,7 +1,7 @@
 specVersion: v2
 specMinorVersion: 2
 meta:
-  name: nim-anywhere
+  name: hackai2024-D=datawise
   image: project-nim-anywhere
   description: Accelerate Your AI Deployment With NVIDIA NIM.
   labels:
