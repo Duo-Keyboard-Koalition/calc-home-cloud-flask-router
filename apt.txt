@@ -1,0 +1,10 @@
+ca-certificates
+curl
+jq
+less
+make
+pandoc
+python3.10-venv
+skopeo
+unzip
+wget
