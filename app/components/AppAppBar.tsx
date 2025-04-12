@@ -1,5 +1,6 @@
+"use client";
+
 import * as React from 'react';
-import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
+import Image from 'next/image';
 
 const logoStyle = {
   width: '140px',
@@ -19,13 +21,11 @@ const logoStyle = {
 };
 
 interface AppAppBarProps {
-  mode: PaletteMode;
-  toggleColorMode: () => void;
   isLoggedIn: boolean;
   onLogout: () => void;
 }
 
-function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarProps) {
+function AppAppBar({ isLoggedIn, onLogout }: AppAppBarProps) {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -51,7 +51,6 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
     }
   };
   
-
   return (
     <div>
       <AppBar
@@ -95,10 +94,12 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
                 px: 0,
               }}
             >
-              <img
-                src={"https://zeevector.com/wp-content/uploads/Recycle-Symbol-Blue-Transparent@zeevector.com_.png"}
-                style={{ width: '45px', height: '45px' }}
+              <Image
+                src="/logo.svg"
+                width={45}
+                height={45}
                 alt="logo of website"
+                style={{ width: '45px', height: '45px' }}
               />
               
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -144,7 +145,7 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
                 alignItems: 'center',
               }}
             >
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+              <ToggleColorMode />
               {isLoggedIn ? (
                 <Button
                   color="primary"
@@ -204,7 +205,7 @@ function AppAppBar({ mode, toggleColorMode, isLoggedIn, onLogout }: AppAppBarPro
                       flexGrow: 1,
                     }}
                   >
-                    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+                    <ToggleColorMode />
                   </Box>
                   <MenuItem onClick={handleHomeClick}>
                     Home

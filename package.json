@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "ecofind",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "@vis.gl/react-google-maps": "^1.1.0",
     "aws-amplify": "^6.4.3",
     "axios": "^1.7.3",
-    "next": "14.2.5",
+    "next": "^14.2.28",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -31,7 +31,7 @@
     "aws-cdk": "^2.151.0",
     "aws-cdk-lib": "^2.151.0",
     "constructs": "^10.3.0",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.25.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

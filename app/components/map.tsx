@@ -112,7 +112,7 @@ function Directions() {
       markers.forEach(marker => marker.setMap(null));
       setMarkers([]);
     }
-  }, [selectedTrashTypes]);
+  }, [selectedTrashTypes, markers]);
 
   useEffect(() => {
     // Update button disabled state based on trash types and address
@@ -304,7 +304,7 @@ function Directions() {
 
       setMarkers(newMarkers);
     }
-  }, [locations, map]);
+  }, [locations, map, markers]);
   return (
     <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1, p: 2, backgroundColor: 'white', boxShadow: 1 ,mb: 4}}>
       <Paper elevation={3} sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
