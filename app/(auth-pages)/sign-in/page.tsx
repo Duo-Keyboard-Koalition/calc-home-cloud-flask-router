@@ -10,13 +10,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import ToggleColorMode from '../../components/ToggleColorMode';
+import { Paper } from '@mui/material';
+import ThemeRegistry from '../../components/ThemeRegistry';
 
 function Copyright(props: any) {
+  const theme = useTheme();
+  const color = theme.palette.mode === 'light' ? 'text.secondary' : 'text.primary';
+  
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color={color} align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="/">
         EcoFind
@@ -26,8 +32,6 @@ function Copyright(props: any) {
     </Typography>
   );
 }
-
-const defaultTheme = createTheme();
 
 export default function SignIn() {
   const [error, setError] = React.useState<string | null>(null);
@@ -67,12 +71,17 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeRegistry>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
+        <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
+          <ToggleColorMode />
+        </Box>
+        <Paper 
+          elevation={6} 
+          sx={{ 
+            p: 4, 
+            mt: 8, 
+            borderRadius: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -84,7 +93,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
             <TextField
               margin="normal"
               required
@@ -126,9 +135,9 @@ export default function SignIn() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
+        </Paper>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </ThemeRegistry>
   );
 }
