@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ThemeRegistry from './components/ThemeRegistry';
 import './globals.css';
-import getLPTheme from './getLPTheme';
 
 export const metadata = {
   title: 'EcoFind',

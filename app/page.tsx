@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import AppAppBar from './components/AppAppBar';
-import FAQ from './components/FAQ';
-import Highlights from './components/Highlights';
-import Footer from './components/Footer';
+import AppAppBar from '@component/AppAppBar';
+import FAQ from '@component/FAQ';
+import Highlights from '@component/Highlights';
+import Footer from '@component/Footer';
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

@@ -13,6 +13,17 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 import Image from 'next/image';
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
+
+try {
+  // Dynamic import for client-side only
+  const outputs = require("../../amplify_outputs.json");
+  Amplify.configure(outputs);
+} catch (error) {
+  console.error("Error configuring Amplify:", error);
+}
 
 const logoStyle = {
   width: '140px',
@@ -52,209 +63,211 @@ function AppAppBar({ isLoggedIn, onLogout }: AppAppBarProps) {
   };
   
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: 0,
-          bgcolor: 'transparent',
-          backgroundImage: 'none',
-          mt: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar
-            variant="regular"
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexShrink: 0,
-              borderRadius: '999px',
-              bgcolor:
-                theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.4)'
-                  : 'rgba(0, 0, 0, 0.4)',
-              backdropFilter: 'blur(24px)',
-              maxHeight: 40,
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
-                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
-            })}
-          >
-            <Box
-              sx={{
-                flexGrow: 1,
+    <Authenticator.Provider>
+      <div>
+        <AppBar
+          position="fixed"
+          sx={{
+            boxShadow: 0,
+            bgcolor: 'transparent',
+            backgroundImage: 'none',
+            mt: 2,
+          }}
+        >
+          <Container maxWidth="lg">
+            <Toolbar
+              variant="regular"
+              sx={(theme) => ({
                 display: 'flex',
                 alignItems: 'center',
-                ml: '-18px',
-                px: 0,
-              }}
+                justifyContent: 'space-between',
+                flexShrink: 0,
+                borderRadius: '999px',
+                bgcolor:
+                  theme.palette.mode === 'light'
+                    ? 'rgba(255, 255, 255, 0.4)'
+                    : 'rgba(0, 0, 0, 0.4)',
+                backdropFilter: 'blur(24px)',
+                maxHeight: 40,
+                border: '1px solid',
+                borderColor: 'divider',
+                boxShadow:
+                  theme.palette.mode === 'light'
+                    ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
+                    : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
+              })}
             >
-              <Image
-                src="/logo.svg"
-                width={45}
-                height={45}
-                alt="logo of website"
-                style={{ width: '45px', height: '45px' }}
-              />
-              
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  onClick={handleHomeClick}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Home
-                  </Typography>
-                </MenuItem>
-              </Box>
-              {isLoggedIn ? (
-                <>
-                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <MenuItem
-                      onClick={handleFindClick}
-                      sx={{ py: '6px', px: '12px' }}
-                    >
-                      <Typography variant="body2" color="text.primary">
-                        Find
-                      </Typography>
-                    </MenuItem>
-                  </Box>
-
-                  <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <MenuItem
-                      onClick={handleBotClick}
-                      sx={{ py: '6px', px: '12px' }}
-                    >
-                      <Typography variant="body2" color="text.primary">
-                        Chatbot
-                      </Typography>
-                    </MenuItem>
-                  </Box>
-                </>
-              ) : null}
-            </Box>
-            <Box
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                gap: 0.5,
-                alignItems: 'center',
-              }}
-            >
-              <ToggleColorMode />
-              {isLoggedIn ? (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  size="small"
-                  onClick={onLogout}
-                >
-                 Sign Out
-                </Button>
-              ) : (
-                <>
-                  <Button
-                    color="primary"
-                    variant="text"
-                    size="small"
-                    component="a"
-                    href="http://localhost:3000/sign-in"
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  ml: '-18px',
+                  px: 0,
+                }}
+              >
+                <Image
+                  src="/logo.svg"
+                  width={45}
+                  height={45}
+                  alt="logo of website"
+                  style={{ width: '45px', height: '45px' }}
+                />
+                
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                  <MenuItem
+                    onClick={handleHomeClick}
+                    sx={{ py: '6px', px: '12px' }}
                   >
-                    Sign in
-                  </Button>
+                    <Typography variant="body2" color="text.primary">
+                      Home
+                    </Typography>
+                  </MenuItem>
+                </Box>
+                {isLoggedIn ? (
+                  <>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                      <MenuItem
+                        onClick={handleFindClick}
+                        sx={{ py: '6px', px: '12px' }}
+                      >
+                        <Typography variant="body2" color="text.primary">
+                          Find
+                        </Typography>
+                      </MenuItem>
+                    </Box>
+
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                      <MenuItem
+                        onClick={handleBotClick}
+                        sx={{ py: '6px', px: '12px' }}
+                      >
+                        <Typography variant="body2" color="text.primary">
+                          Chatbot
+                        </Typography>
+                      </MenuItem>
+                    </Box>
+                  </>
+                ) : null}
+              </Box>
+              <Box
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  gap: 0.5,
+                  alignItems: 'center',
+                }}
+              >
+                <ToggleColorMode />
+                {isLoggedIn ? (
                   <Button
                     color="primary"
                     variant="contained"
                     size="small"
-                    component="a"
-                    href="http://localhost:3000/sign-up"
+                    onClick={onLogout}
                   >
-                    Sign up
+                   Sign Out
                   </Button>
-                </>
-              )}
-            </Box>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
-              <Button
-                variant="text"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ minWidth: '30px', p: '4px' }}
-              >
-                <MenuIcon />
-              </Button>
-              <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-                <Box
-                  sx={{
-                    minWidth: '60dvw',
-                    p: 2,
-                    backgroundColor: 'background.paper',
-                    flexGrow: 1,
-                  }}
+                ) : (
+                  <>
+                    <Button
+                      color="primary"
+                      variant="text"
+                      size="small"
+                      component="a"
+                      href="http://localhost:3000/login"
+                    >
+                      Sign in
+                    </Button>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      size="small"
+                      component="a"
+                      href="http://localhost:3000/login"
+                    >
+                      Sign up
+                    </Button>
+                  </>
+                )}
+              </Box>
+              <Box sx={{ display: { sm: '', md: 'none' } }}>
+                <Button
+                  variant="text"
+                  color="primary"
+                  aria-label="menu"
+                  onClick={toggleDrawer(true)}
+                  sx={{ minWidth: '30px', p: '4px' }}
                 >
+                  <MenuIcon />
+                </Button>
+                <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'end',
+                      minWidth: '60dvw',
+                      p: 2,
+                      backgroundColor: 'background.paper',
                       flexGrow: 1,
                     }}
                   >
-                    <ToggleColorMode />
-                  </Box>
-                  <MenuItem onClick={handleHomeClick}>
-                    Home
-                  </MenuItem>
-                  <Divider />
-                  {isLoggedIn ? (
-                    <MenuItem>
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        sx={{ width: '100%' }}
-                        onClick={onLogout}
-                      >
-                        Sign Out
-                      </Button>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'end',
+                        flexGrow: 1,
+                      }}
+                    >
+                      <ToggleColorMode />
+                    </Box>
+                    <MenuItem onClick={handleHomeClick}>
+                      Home
                     </MenuItem>
-                  ) : (
-                    <>
+                    <Divider />
+                    {isLoggedIn ? (
                       <MenuItem>
                         <Button
                           color="primary"
                           variant="contained"
-                          component="a"
-                          href="http://localhost:3000/sign-up"
                           sx={{ width: '100%' }}
+                          onClick={onLogout}
                         >
-                          Sign up
+                          Sign Out
                         </Button>
                       </MenuItem>
-                      <MenuItem>
-                        <Button
-                          color="primary"
-                          variant="outlined"
-                          component="a"
-                          href="http://localhost:3000/sign-in"
-                          sx={{ width: '100%' }}
-                        >
-                          Sign in
-                        </Button>
-                      </MenuItem>
-                    </>
-                  )}
-                </Box>
-              </Drawer>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+                    ) : (
+                      <>
+                        <MenuItem>
+                          <Button
+                            color="primary"
+                            variant="contained"
+                            component="a"
+                            href="http://localhost:3000/login"
+                            sx={{ width: '100%' }}
+                          >
+                            Sign up
+                          </Button>
+                        </MenuItem>
+                        <MenuItem>
+                          <Button
+                            color="primary"
+                            variant="outlined"
+                            component="a"
+                            href="http://localhost:3000/login"
+                            sx={{ width: '100%' }}
+                          >
+                            Sign in
+                          </Button>
+                        </MenuItem>
+                      </>
+                    )}
+                  </Box>
+                </Drawer>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </div>
+    </Authenticator.Provider>
   );
 }
 
